@@ -1,1 +1,55 @@
-# alilouexe
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Panel</title>
+<style>
+:root{--g:#00ff41;--bg:#000;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;margin:0;background:var(--bg)}
+body{color:var(--g);font-family:"Courier New",Courier,monospace;display:flex;flex-direction:column;align-items:center;overflow:hidden}
+body::after{content:"";position:fixed;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,.4) 0 2px,transparent 2px 4px),radial-gradient(ellipse at center,transparent 50%,#000 100%);pointer-events:none;z-index:2}
+.skull{margin:0 0 6px;font-size:.8rem;line-height:1.05;text-shadow:0 0 10px var(--g);animation:flick 4s infinite}
+.warn{margin-top:10px;font-size:.8rem;letter-spacing:.3em;animation:blink .8s steps(1) infinite}
+@keyframes glitch{0%,90%,100%{transform:translate(0)}92%{transform:translate(-4px,1px);text-shadow:3px 0 #00ff41,-3px 0 #006b1b}94%{transform:translate(4px,-1px);text-shadow:-3px 0 #00ff41,3px 0 #006b1b}96%{transform:translate(-2px,0)}}
+header,main{position:relative;z-index:1}
+header{width:100%;text-align:center;padding:28px 16px 0}
+h1{margin:0;font-size:2rem;letter-spacing:.25em;text-transform:uppercase;text-shadow:0 0 8px var(--g),0 0 20px var(--g);animation:flick 3s infinite,glitch 2.5s infinite}
+h1::after{content:"_";animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@keyframes flick{0%,92%,100%{opacity:1}94%{opacity:.6}96%{opacity:1}98%{opacity:.7}}
+main{flex:1;display:flex;align-items:center;justify-content:center;width:100%;padding:16px}
+.card{width:100%;max-width:360px;background:rgba(0,0,0,.85);border:1px solid var(--g);border-radius:6px;padding:24px;box-shadow:0 0 25px rgba(0,255,65,.4),inset 0 0 15px rgba(0,255,65,.1)}
+.card h2{margin:0 0 16px;font-size:1rem;text-align:center;font-weight:400}
+.card h2::before{content:"> "}
+input{width:100%;box-sizing:border-box;padding:14px;border:1px solid var(--g);border-radius:4px;background:#000;color:var(--g);font-family:inherit;font-size:1rem;outline:none}
+input::placeholder{color:#00ff4166}
+input:focus{box-shadow:0 0 12px var(--g)}
+button{width:100%;margin-top:14px;padding:14px;border:1px solid var(--g);border-radius:4px;background:#000;color:var(--g);font-family:inherit;font-size:1rem;font-weight:700;letter-spacing:.1em;cursor:pointer;transition:.2s}
+button:hover,button:active{background:var(--g);color:#000;box-shadow:0 0 20px var(--g)}
+#msg{margin-top:12px;text-align:center;font-size:.9rem;min-height:1.2em}
+</style>
+</head>
+<body>
+<header><pre class="skull">    _______
+  /         \
+ |  (o)  (o) |
+ |     ^     |
+  \  |||||  /
+   |_|_|_|_|</pre><h1>alilou.exe</h1><div class="warn">&#9888; SYSTEM BREACHED &#9888;</div></header>
+<main>
+<div class="card">
+<h2>Enter your email</h2>
+<input id="email" type="email" placeholder="lootbox@example.com" autocomplete="email">
+<button id="go">ACCESS</button>
+<div id="msg"></div>
+</div>
+</main>
+<script>
+document.getElementById('go').onclick=function(){
+var v=document.getElementById('email').value.trim(),m=document.getElementById('msg');
+m.textContent=/^\S+@\S+\.\S+$/.test(v)?'[ ACCESS GRANTED ]':'[ INVALID EMAIL ]';
+};
+</script>
+</body>
+</html>
